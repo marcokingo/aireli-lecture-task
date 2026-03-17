@@ -11,6 +11,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     password
   };
 
-  // please finish this function
+  const response = await createUser(newUser);
 
+  res.status(201).json({ message: 'User registered successfully', userId: response });
 };

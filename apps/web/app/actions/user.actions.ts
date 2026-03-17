@@ -7,12 +7,12 @@ import internalClient from "clients/internalClient"
 import { COOKIE_ACCESS_TOKEN } from "constants/index"
 
 export async function registerUser({ email, password }: { email: string; password: string }) {
-  const user = await storefrontClient.createUser({ email, password }) // todo: replace this with our client
+  const user = await internalClient.registerUser({ email, password }) // todo: replace this with our client
   return user
 }
 
 export async function loginUser({ email, password }: { email: string; password: string }) {
-  const user = await storefrontClient.createUserAccessToken({ email, password }) // change this
+  const user = await internalClient.loginUser({ email, password }) // change this
   cookies().set(COOKIE_ACCESS_TOKEN, user?.accessToken || "", { expires: new Date(user?.expiresAt || "") })
   return user
 }
